@@ -15,4 +15,13 @@ class SiteController extends Controller
             'habits' => $habits
         ]);
     }
+
+    public function me()
+    {
+        return view('portifolio');
+    }
+
+    public function my(){
+        return view('myllena');
+    }
 }
