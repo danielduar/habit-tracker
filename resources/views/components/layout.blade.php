@@ -9,6 +9,8 @@
 {{--HEADER--}}
 <x-header></x-header>
 {{$slot}}
+
+{{--footer--}}
 <x-footer></x-footer>
 </body>
 </html>

@@ -16,12 +16,12 @@ class SiteController extends Controller
         ]);
     }
 
-    public function me()
+    public function portifolio()
     {
         return view('portifolio');
     }
 
     public function my(){
-        return view('myllena');
+        return view('portifolio');
     }
 }
