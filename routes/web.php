@@ -10,5 +10,12 @@ Route::get('/', [SiteController::class, 'index'])->name('site.index');
 /**
  * Login routes
  */
-Route::get('/login', [LoginController::class, 'index'])->name('login.index');
+Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login.authenticate');
+//Auth
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/dashboard', [SiteController::class, 'dashboard'])->name('dashboard.index');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('login.logout');
+});
+

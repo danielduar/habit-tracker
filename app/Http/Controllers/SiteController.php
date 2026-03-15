@@ -8,9 +8,9 @@ class SiteController extends Controller
 {
     public function index()
     {
-        $name ="Daniel Landim";
-        $habits = ["Nadar","Correr","Viajar","Jogar Videogame"];
-        return view('index',[
+        $name = "Daniel Landim";
+        $habits = ["Nadar", "Correr", "Viajar", "Jogar Videogame"];
+        return view('index', [
             'name' => $name,
             'habits' => $habits
         ]);
@@ -21,7 +21,12 @@ class SiteController extends Controller
         return view('portifolio');
     }
 
-    public function my(){
-        return view('portifolio');
+//    public function my(){
+//        return view('portifolio');
+//    }
+
+    public function dashboard()
+    {
+        return view('dashboard');
     }
 }
