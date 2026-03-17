@@ -2,15 +2,29 @@
     <main class="py-10">
 
         <section class="bg-white max-w-[600px] mx-auto p-10 pb-6 border-2 mt-4">
-            <h1 class="font-bold text-3xl mb-4">Faça seu login</h1>
+            <h1 class="font-bold text-3xl mb-4">Registre-se</h1>
 
             <p>
-                Insira seus dados para acessar
+                Preencha as informações para cadastrar seus habitos.
             </p>
 
-            <form action="{{ route('login.authenticate') }}" method="POST" class="flex flex-col">
+            <form action="{{ route('register.store') }}" method="POST" class="flex flex-col">
 
                 @csrf
+                <div class="flex flex-col gap-2 mb-4">
+                    <label for="name">
+                        Nome:
+                    </label>
+
+                    <input type="text" name="name" placeholder="Seu nome"
+                           class="bg-white -2 border-2 @error('name') border-red-500 @enderror">
+                </div>
+                @error('name')
+                <p class="text-red-500 text-sm ">
+                    {{$message}}
+                </p>
+                @enderror
+
                 <div class="flex flex-col gap-2 mb-4">
                     <label for="email">
                         Email:
@@ -38,14 +52,23 @@
                 </p>
                 @enderror
 
+                <div class="flex flex-col gap-2 mb-4">
+                    <label for="password_confirmation">
+                        Repita sua senha:
+                    </label>
+                    <input type="password" name="password_confirmation" placeholder="********"
+                           class="bg-white  border-2 @error('password') border-red-500 @enderror">
+                </div>
+
+
                 <button class="bg-white border-2 p-2" type="submit">
-                    Entrar
+                    Cadastrar
                 </button>
             </form>
             <p class="text-center mt-4">
                 Ainda não tem uma conta?
-                <a href="{{route('register.index')}}" class="underline hover:opacity-50 transition">
-                    Registre-se
+                <a href="{{route('login')}}" class="underline hover:opacity-50 transition">
+                    Faça login
                 </a>
             </p>
         </section>
