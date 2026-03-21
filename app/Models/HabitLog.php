@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class HabitLog extends Model
 {
@@ -12,4 +14,22 @@ class HabitLog extends Model
             'habit_id',
             'completed_at'
         ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * Registros pertencem a somente um usuario (BelongsTo)
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * Um registro tem somente um habito (BelongsTo)
+     */
+    public function habit(): BelongsTo
+    {
+        return $this->belongsTo(Habit::class);
+    }
 }
