@@ -6,8 +6,7 @@ use Illuminate\Support\Facades\Schema;
 use App\Models\User;
 use App\Models\Habit;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -18,6 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Habit::class)->constrained()->cascadeOnDelete();
             $table->date('completed_at');
+            $table->unique(["habit_id", "completed_at"]);
             $table->timestamps();
         });
     }
