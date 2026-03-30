@@ -35,7 +35,6 @@ class LoginRequest extends FormRequest
             "password.required" => "O campo senha é obrigatório",
             "password.min" => "O campo de senha deve ter no mínimo 6 caracteres",
             "password.max" => "O campo de senha deve ter no maximo 60 caracteres",
-
         ];
     }
 }
