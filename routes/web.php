@@ -17,6 +17,7 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('login.aut
 Route::get('/cadastro', [RegisterController::class, 'index'])->name('register.index');
 Route::post('/cadastro', [RegisterController::class, 'store'])->name('register.store');
 //Auth
+
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard', [SiteController::class, 'dashboard'])->name('dashboard.index');
