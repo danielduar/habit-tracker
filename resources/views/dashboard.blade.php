@@ -22,11 +22,19 @@
                     <div class="flex gap-2 items-center">
                         <p class="font-bold text-xl">-{{$habit->name}}</p>
                         <p>({{$habit->HabitLogs->count()}})</p>
+                        <form method="POST" action="{{route('habits.destroy',$habit)}}">
+
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                    class="bg-red-500 text-white p-2  hover:opacity-70 rounded-md cursor-pointer">
+                                <x-icons.trash/>
+                            </button>
+                        </form>
                     </div>
                 </li>
             @empty
                 <p>Voce ainda nao tem habitos cadastrados</p>
-                <a href="#" class="bg-white border-2 p-2"> Cadastre um habito aqui </a>
             @endforelse
         </ul>
 

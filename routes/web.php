@@ -24,8 +24,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [SiteController::class, 'dashboard'])->name('dashboard.index');
     Route::post('/logout', [LoginController::class, 'logout'])->name('login.logout');
 
+
+    //Habits
     Route::get('/dashboard/habitos/cadastro', [HabitController::class, 'create'])->name('habits.create');
     Route::post('/dashboard/habitos/cadastro',[HabitController::class, 'store'])->name('habits.store');
+    Route::delete('/dashboard/habitos/{habit}',[HabitController::class, 'destroy'])->name('habits.destroy');
 });
 
 

@@ -22,7 +22,7 @@ class HabitRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "required|string|unique:habits,name",
+            "name" => "required|string",
         ];
     }
 
@@ -31,7 +31,6 @@ class HabitRequest extends FormRequest
         return [
             "name.required" => "O campo é obrigatório",
             "name.string" => "Somente texto",
-            "name.unique" => "Já existe um hábito com esse nome",
         ];
     }
 }
