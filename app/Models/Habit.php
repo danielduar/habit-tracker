@@ -26,7 +26,7 @@ class Habit extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      * Um habito tem muitos registros
      */
     public function habitLogs(): HasMany
