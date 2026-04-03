@@ -8,7 +8,7 @@
                Preencha o formulário abaixo para cadastrar um hábito
             </p>
 
-            <form action="#" method="POST" class="flex flex-col">
+            <form action="{{route('habits.store')}}" method="POST" class="flex flex-col">
 
                 @csrf
                 <div class="flex flex-col gap-2 mb-4">
