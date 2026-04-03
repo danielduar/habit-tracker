@@ -17,7 +17,7 @@
                     </label>
 
                     <input type="email" name="email" placeholder="Seu@email.com"
-                           class="bg-white border-2 @error('email') border-red-500 @enderror">
+                           class="bg-white p-2 habit-shadow @error('email') border-red-500 @enderror">
                 </div>
                 @error('email')
                 <p class="text-red-500 text-sm ">
@@ -29,7 +29,7 @@
                         Senha:
                     </label>
                     <input type="password" name="password" placeholder="********"
-                           class="bg-white  border-2 @error('password') border-red-500 @enderror">
+                           class="bg-white p-2 habit-shadow @error('password') border-red-500 @enderror">
                 </div>
 
                 @error('password')
@@ -38,7 +38,7 @@
                 </p>
                 @enderror
 
-                <button class="bg-white border-2 p-2" type="submit">
+                <button class="bg-habit-orange habit_btn habit-shadow-lg  p-2" type="submit">
                     Entrar
                 </button>
             </form>

@@ -1,5 +1,5 @@
 <x-layout>
-    <main class="py-10 mx-auto">
+    <main class="py-10 mx-auto min-h[(100vh-100px)]">
         <h1 class="font-bold text-4xl text-center">Dashboard</h1>
         <p class="mb-4">Bem-vindo(a) {{auth()->user()->name}} </p>
 
