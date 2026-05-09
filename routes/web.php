@@ -32,7 +32,7 @@ Route::middleware(['auth'])->group(function () {
 //    Route::get('/dashboard/habitos/{habit}/editar', [HabitController::class, 'edit'])->name('habits.edit');
 //    Route::put('/dashboard/habitos/{habit}/editar', [HabitController::class, 'update'])->name('habits.update');
     Route::resource('dashboard/habits', HabitController::class);
-    Route::post('dashboard/habits/{habit}/toogle', [HabitController::class, 'toogle'])->name('habits.toogle');
+    Route::post('dashboard/habits/{habit}/toggle', [HabitController::class, 'toggle'])->name('habits.toggle');
 });
 
 

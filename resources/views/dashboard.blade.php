@@ -15,18 +15,13 @@
 
             @forelse($habits as $habit)
 
-                @php
-                    $hasCompletedToday = $habit->habitLogs->where("user_id",auth()->id())
-                    ->where("completed_at",\Carbon\Carbon::today()->toDateString())->isNotEmpty();
-
-                @endphp
                 <li class="habit-shadow-lg p-2 bg-[#FFDAAE]">
-                    <form action="{{route("habits.toogle",$habit->id)}}" method="POST" class="flex gap-2 items-center"
+                    <form action="{{route("habits.toggle",$habit->id)}}" method="POST" class="flex gap-2 items-center"
                           id="form-{{$habit->id}}">
 
                         @csrf
                         <input type="checkbox" class="w-5 h-5" {{$habit->is_completed ? 'checked' : ''}}
-                            {{$hasCompletedToday ? 'checked' : ''}}
+                            {{$habit->wasCompletedToday() ? 'checked' : ''}}
                         onchange="document.getElementById('form-{{$habit->id}}').submit()"/>
                         <p class="font-bold text-lg">{{$habit->name}}</p>
 

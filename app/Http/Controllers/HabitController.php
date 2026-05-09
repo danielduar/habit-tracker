@@ -18,7 +18,7 @@ class HabitController extends Controller
      */
     public function index(): View
     {
-        $habits = auth()->user()->habits;
+        $habits = auth()->user()->habits()->with('habitLogs')->get();
         return view('dashboard', compact('habits'));
     }
 
@@ -83,7 +83,7 @@ class HabitController extends Controller
         return redirect()->route('habits.index')->with("success", "Hábito removido com sucesso!");
     }
 
-    public function toogle(Habit $habit)
+    public function toggle(Habit $habit)
     {
         if ($habit->user_id !== Auth::user()->id) {
             abort(403, 'Ação nao autorizada');
