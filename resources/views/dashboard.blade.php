@@ -1,7 +1,6 @@
 <x-layout>
     <main class="py-10 mx-auto min-h[(100vh-100px)]">
-        <h1 class="font-bold text-4xl text-center">Dashboard</h1>
-        <p class="mb-4">Bem-vindo(a) {{auth()->user()->name}} </p>
+        <x-navbar/>
 
 
         @session('success')
@@ -9,35 +8,29 @@
             {{session('success')}}
         </p>
         @endsession
-
-        <a href="{{route('habits.create')}}" class="p-2 border-2 bg-white font-bold block">
-            Crie um novo Hábito
-        </a>
-        <h2 class="text-xl mt-4">Listagem dos Hábitos</h2>
+        <h2 class="text-xl mt-8 mb-2">{{date('d-m-Y')}}</h2>
 
         <ul class="flex flex-col gap-2">
+
+
             @forelse($habits as $habit)
 
-                <li class="pl-4">
-                    <div class="flex gap-2 items-center">
-                        <p class="font-bold text-xl">-{{$habit->name}}</p>
-                        <p>({{$habit->HabitLogs->count()}})</p>
+                @php
+                    $hasCompletedToday = $habit->habitLogs->where("user_id",auth()->id())
+                    ->where("completed_at",\Carbon\Carbon::today()->toDateString())->isNotEmpty();
 
-                        <a href="{{route('habits.edit',$habit->id)}}"
-                           class="bg-white  hover:opacity-70 rounded-md cursor-pointer">
-                            <x-icons.edit/>
-                        </a>
-                        <form method="POST" action="{{route('habits.destroy',$habit)}}">
+                @endphp
+                <li class="habit-shadow-lg p-2 bg-[#FFDAAE]">
+                    <form action="{{route("habits.toogle",$habit->id)}}" method="POST" class="flex gap-2 items-center"
+                          id="form-{{$habit->id}}">
 
-                            @csrf
-                            @method('DELETE')
+                        @csrf
+                        <input type="checkbox" class="w-5 h-5" {{$habit->is_completed ? 'checked' : ''}}
+                            {{$hasCompletedToday ? 'checked' : ''}}
+                        onchange="document.getElementById('form-{{$habit->id}}').submit()"/>
+                        <p class="font-bold text-lg">{{$habit->name}}</p>
 
-                            <button type="submit"
-                                    class="bg-red-500 text-white p-2  hover:opacity-70 rounded-md cursor-pointer">
-                                <x-icons.trash/>
-                            </button>
-                        </form>
-                    </div>
+                    </form>
                 </li>
             @empty
                 <p>Voce ainda nao tem habitos cadastrados</p>
@@ -46,3 +39,19 @@
 
     </main>
 </x-layout>
+
+
+{{--<a href="{{route('habits.edit',$habit->id)}}"--}}
+{{--   class="bg-white  hover:opacity-70 rounded-md cursor-pointer">--}}
+{{--    <x-icons.edit/>--}}
+{{--</a>--}}
+{{--<form method="POST" action="{{route('habits.destroy',$habit)}}">--}}
+
+{{--    @csrf--}}
+{{--    @method('DELETE')--}}
+
+{{--    <button type="submit"--}}
+{{--            class="bg-red-500 text-white p-2  hover:opacity-70 rounded-md cursor-pointer">--}}
+{{--        <x-icons.trash/>--}}
+{{--    </button>--}}
+{{--</form>--}}

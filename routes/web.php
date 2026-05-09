@@ -24,6 +24,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [LoginController::class, 'logout'])->name('login.logout');
 
     //Habits
+    Route::get('dashboard/habits/gerenciar', [HabitController::class, 'manage'])->name('habits.manage');
 
 //    Route::get('/dashboard/habitos/cadastro', [HabitController::class, 'create'])->name('habits.create');
 //    Route::post('/dashboard/habitos/cadastro', [HabitController::class, 'store'])->name('habits.store');
@@ -31,6 +32,7 @@ Route::middleware(['auth'])->group(function () {
 //    Route::get('/dashboard/habitos/{habit}/editar', [HabitController::class, 'edit'])->name('habits.edit');
 //    Route::put('/dashboard/habitos/{habit}/editar', [HabitController::class, 'update'])->name('habits.update');
     Route::resource('dashboard/habits', HabitController::class);
+    Route::post('dashboard/habits/{habit}/toogle', [HabitController::class, 'toogle'])->name('habits.toogle');
 });
 
 
